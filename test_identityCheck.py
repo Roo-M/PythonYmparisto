@@ -29,3 +29,38 @@ def test_opiskelijanumeroOk_desimaali1():
 # Joukossa desimaalipilkku -> väärin
 def test_opiskelijanumeroOk_desimaali2():
     assert identityCheck.opiskelijanumeroOk('12,45') == False
+
+# TDD-TESTAUSTA
+# -------------
+
+# Henkilötunnus on oikein muodostettu, ei virhettä
+def test_checkHeTuOK():
+    assert identityCheck.checkHeTu('130728-478N') == (0, 'OK')
+
+# Henkilötunnuksessa pitää olla 11 merkkiä, merkkejä puuttuu
+def test_checkHeTuShort():
+    assert identityCheck.checkHeTu('13028-478N') == (1, 'Henkilötunnus liian lyhyt')
+
+# Henkilötunnuksessa pitää olla 11 merkkiä, merkkejä on liikaa
+def test_checkHeTuLong():
+    assert identityCheck.checkHeTu('1307288-478N') == (2, 'Henkilötunnus liian pitkä')
+
+# Henkilötunnuksen päiväosassa saa olla 01 - 31
+def test_checkHetuDays():
+    assert identityCheck.checkHeTu('450728-478N') == (3, 'Päivä virheellinen')
+
+# Henkilötunnuksen kuukausiosassa saa olla 01 - 12
+def test_checkHetuMonths():
+    assert identityCheck.checkHeTu('132728-478N') == (4, 'Kuukausi virheellinen')
+
+# Henkilötunnuksen vuosiosassa saa olla 00 - 99
+def test_checkHetuYears():
+    assert identityCheck.checkHeTu('13072x-478N') == (5, 'Vuosi virheellinen')  
+
+# Käytössä olevat vuosisatakoodit + (1800), - (1900) ja A (2000)
+def test_checkHetuCenturyCode(): 
+    assert identityCheck.checkHeTu('130728s478N') == (6, 'Vuosisatakoodi virheellinen')
+
+# Henkilötunnuksen numeroista tehdään luku, esim 130728478 ja jaetaan se luvulla 31. Jakojäännös on tarkiste. Jos se on alle 10, käytetään numeroa, jos yli haetaan taulukosta vastaava kirjainmerkki 10 -> A, 11 -> B. G ja I eivät ole käytössä
+def test_checkHetuModulo():
+    assert identityCheck.checkHeTu('130728-478M') == (7, 'Varmistussumma ei täsmää')

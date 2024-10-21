@@ -88,7 +88,6 @@ def checkHeTu(hetu):
 
     # Jos pituus oikea tehdään eri osat
     if length == 11:
-    
         dayPart = hetu[0:2]
         monthPart = hetu[2:4]
         yearPart = hetu[4:6]
@@ -132,9 +131,18 @@ def checkHeTu(hetu):
         else:
             result = (5, 'Vuosi virheellinen')
         
-        # TODO: Tähän Try-Except, jolla tarkistetaan vuosisatakoodi
+        # Tarkistetaan vuosisatakoodi
+        try:
+            position = list(validCenturyCodes).index(centuryPart)
+        except:
+            result = (6, 'Vuosisatakoodi virheellinen')
 
         # TODO: Tähän modulo 31 tarkistuksen laskenta ja vertaus syötettyyn
+        partsCombined = dayPart + monthPart + yearPart + numberPart
+        if partsCombined.isdigit() and result == (0, 'OK'):
+            checkSumCalculated = int(partsCombined)%31
+            if checkSum != modulusSymbols[checkSumCalculated]:
+                result = (7, 'Varmistussumma ei täsmää')
 
     if length < 11:
         result = (1, 'Henkilötunnus liian lyhyt')
@@ -143,6 +151,10 @@ def checkHeTu(hetu):
         result = (2, 'Henkilötunnus liian pitkä')
     
     return result
+
+# TODO: Poista loput rivit, kun valmista
+# KOKEILLAAN ERILAISIA VAIHTOEHTOJA
+# ---------------------------------
 
 if __name__ == "__main__":
     hetu = '130728-478N'
@@ -173,12 +185,27 @@ if __name__ == "__main__":
     # print('Vuosisatakoodi * on ', centuryCodes['*'])
 
     # Haetaan indeksinumero listan jäsenelle
+    # try:
+    #     position = validCenturyCodes.index('*')
+    #     print(position)
+    # except:
+    #     print('Ei löytynyt')
+
+    # Kokeillaan virheilmoituksia
     try:
         position = validCenturyCodes.index('*')
-        print(position)
-    except:
+    except Exception as e:
+        print('Tapahtui virhe:', e)
+    
+    print('Ja tämä tulee virheenkäsittelyn jälkeen näkyviin')
+
+    searchLetter = '+'
+
+    for value in validCenturyCodes:
+        if value == searchLetter:
+            found = True
+            break
+        else:
+            found = False
+    if found == False:
         print('Ei löytynyt')
-
-
-
-

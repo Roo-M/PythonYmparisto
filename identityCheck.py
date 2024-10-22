@@ -152,9 +152,6 @@ def checkHeTu(hetu):
     
     return result
 
-# TODO: Poista loput rivit, kun valmista
-# KOKEILLAAN ERILAISIA VAIHTOEHTOJA
-# ---------------------------------
 
 if __name__ == "__main__":
     pass

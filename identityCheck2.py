@@ -143,7 +143,6 @@ class NationalSSN:
             parts = self.splitSsn()
             centurySymbol = parts['century']
 
-            # TODO: Mitä jos symboli on väärä, sitä ei ole huomioitu järkevyystarkastuksessa -> kaatuu
             try:
                 century = self.centuryCodes[centurySymbol]
             except:
@@ -199,8 +198,6 @@ if __name__ == "__main__":
         hetu1 = NationalSSN('130728-478N')
         hetu1.checkSsnLengthOk()
         hetu1.getDateOfBirth()
-        # ika = hetu1.calculateAge()
-        # hetu1.getGender()
     except Exception as e:
         print('Tapahtui virhe:', e)
 
@@ -210,5 +207,3 @@ if __name__ == "__main__":
     print('HeTun osat ovat: ', hetu1.splitSsn())
     print('Syntymäaikaosa ISO-muodossa on ', hetu1.dateOfBirth)
   
-    # print('Henkilön ikä on', ika)
-    # print('Ja hän on ', hetu1.gender)

@@ -207,12 +207,11 @@ if __name__ == "__main__":
         hetu1 = NationalSSN('130728-478N')
         hetu1.checkSsnLengthOk()
         hetu1.getDateOfBirth()
+        print('On oikean pituinen:', hetu1.checkSsnLengthOk())
+        print('Henkilötunnus on oikein muodostettu', hetu1.isValidSsn())
+        print('HeTun osat ovat: ', hetu1.splitSsn())
+        print('Syntymäaikaosa ISO-muodossa on ', hetu1.dateOfBirth)
     except Exception as e:
         print('Tapahtui virhe:', e)
 
-
-    print('On oikean pituinen:', hetu1.checkSsnLengthOk())
-    print('Henkilötunnus on oikein muodostettu', hetu1.isValidSsn())
-    print('HeTun osat ovat: ', hetu1.splitSsn())
-    print('Syntymäaikaosa ISO-muodossa on ', hetu1.dateOfBirth)
   

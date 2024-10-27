@@ -15,34 +15,75 @@ import identityCheck2
 # ---------
 kameraIndeksi: int = 1 # Ensimmäinen kamera on aina 0
 
-# TODO: Tee tarkistus siitä että nimi ei voi olla tyhjä
+# FUNKTIOT
+# --------
 
-# TODO: Rakenna funktio, jolla kysytään nimet ja muutetaan yhdysnimet isoille alkukirjaimille -> reg exp
+def askName(question: str) -> str:
+    """Reads console untila a name is given and converts it to title and removes spaces between letters
 
-while True:
-    userGivenSsn = input('Syötä asiakkaan henkilötunnus: ')
-    userGivenSsn = userGivenSsn.upper() # Varmistetaan, että tarkiste on isolla
+    Args:
+        question (str): Prompt to user
 
-    ssnToCheck = identityCheck2.NationalSSN(userGivenSsn)
-    if ssnToCheck.isValidSsn() == True:
-        try:
-            ssnToCheck.getDateOfBirth()
-            ssnToCheck.getGender()
-            age = ssnToCheck.calculateAge()
-            userGivenLastName = input('Syötä asikkaan sukunimi: ')
-            userGivenLastName = userGivenLastName.capitalize()
-            userGivenFirstName = input('Syötä asiakkaan etunimi: ')
-            userGivenFirstName = userGivenFirstName.capitalize()
-            print('Asiakkas: ', userGivenLastName, userGivenFirstName)
-            print('Syntymäaika:', ssnToCheck.dateOfBirth)
-            print('Ikä:', age)
-            print('Sukupuoli:', ssnToCheck.gender)
-        except Exception as e:
-            print('Syöttämässäsi sosiaaliturvatunnuksessa oli virhe:', e)
+    Returns:
+        str: modifies answer
+    """
+    name = ''
+    while name == '':
+        question = question + ': '
+        name = input(question).strip()
+    name = name.title()
+    return name
 
-    # Kysytään halutaanko poistua ohjelmasta
-    wantExit = input('Haluatko päättää ohjelman? Vastaa k/E: ')
-    # Muutetaan vastaus isoiksi kirjaimiksi ja tarkistetaan onko se K
-    if wantExit.upper == 'K':
-        break # Poistutaan ikuisesta silmukasta
+
+
+if __name__ == "__main__":
+    # PÄÄOHJELMAN IKUINEN SILMUKKA
+    # ============================
+    while True:
+
+        # Alustetaan nimet tyhjiksi
+        userGivenSsn = ''
+        userGivenLastName = ''
+        userGivenFirstName = ''
+
+        # Kysytään asiakkaan henkilötunnus ja muutetaan kirjaimet isoiksi
+        userGivenSsn = input('Syötä asiakkaan henkilötunnus: ')
+        userGivenSsn = userGivenSsn.upper() # Varmistetaan, että tarkiste on isolla
+
+        # Luodaan syötetystä henkilötunnuksesta NationalSSN-objekti
+        ssnToCheck = identityCheck2.NationalSSN(userGivenSsn)
+
+        # Tarkistetaan onko HeTu oikein muodostettu
+        if ssnToCheck.isValidSsn() == True:
+
+            # Virheenkäsittely, mahdollisen vuosisatakoodivirheen varalta
+            try:
+                ssnToCheck.getDateOfBirth() # Asetetaan syntymäaika ominaisuus
+                ssnToCheck.getGender() # Asetetaan sukupuoliominaisuus
+                age = ssnToCheck.calculateAge() # Lasketaan ikä tänään
+
+                # Kysytään loput tiedot, jos ei virhettä
+                userGivenLastName = askName('Asiakkaan sukunimi')
+                userGivenFirstName = askName('Asiakkan etunimi')
+
+                # Tulostetaan tiedot ruudulle
+                print('Asiakkas: ', userGivenLastName, userGivenFirstName)
+                print('Syntymäaika:', ssnToCheck.dateOfBirth)
+                print('Ikä:', age)
+                print('Sukupuoli:', ssnToCheck.gender)
+
+            # Virhetilanteessa näytetään virheilmoitus
+            except Exception as e:
+                print('Syöttämässäsi sosiaaliturvatunnuksessa oli virhe:', e)
+        else:
+            print('Antamasi sosiaaliturvatunnus on virheellinen.')
+
+        # TODO: Lisää else-haara, joka kertoo että HeTu oli virheellinen
+
+        # Kysytään halutaanko poistua ohjelmasta
+        wantToExit = input('Haluatko päättää ohjelman? Vastaa k/E: ')
+        # Muutetaan vastaus isoiksi kirjaimiksi ja tarkistetaan onko se K
+        if wantToExit.upper == 'K':
+            break # Poistutaan ikuisesta silmukasta
+
 

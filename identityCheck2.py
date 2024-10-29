@@ -109,6 +109,7 @@ class NationalSSN:
                     'number':  birthNumberPart,
                     'checksum': checksumPart
                     }
+        # Else haaran tarkoitus on vain estää PyLance-virhe, ei palauta oikeasti mitään, vaan antaa virheilmoituksen, jos HeTu väärän mittainen
         else:
             return {'status' : 'error'}
         

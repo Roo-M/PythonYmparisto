@@ -19,7 +19,7 @@ kameraIndeksi: int = 1 # Ensimmäinen kamera on aina 0
 # --------
 
 def askName(question: str) -> str:
-    """Reads console untila a name is given and converts it to title and removes spaces between letters
+    """Reads console untila a name is given and converts it to title and removes white space
 
     Args:
         question (str): Prompt to user
@@ -35,8 +35,10 @@ def askName(question: str) -> str:
     return name
 
 
-
+# Varmistetaan, ettei ohjelma käynnisty, kun se tuodaan moduuliin importilla
+# Ohjelma saa käynnistyä ainoastaan ajamalla app.py
 if __name__ == "__main__":
+
     # PÄÄOHJELMAN IKUINEN SILMUKKA
     # ============================
     while True:

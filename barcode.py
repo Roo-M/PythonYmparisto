@@ -7,6 +7,9 @@
 # ASETUKSET
 # ---------
 
+# FUNKTIOT
+# --------
+
 def barCodeValue(character: str) ->int:
     """Calculates a value of character used in Code128B barcode generation
 
@@ -70,8 +73,13 @@ def createCode128B(text: str) ->str:
     code128BBarCodeString = startChar + text + checkSumSymbol + stopChar
     return code128BBarCodeString
 
-if __name__ == "__main__":
-    testString = '128B'
-    print ('Painotetut arvot yhteensä:', calculatedCode128BChecksum(testString))
-    print('Koko viivakoodi on', createCode128B('128B'))
+# LUOKKA VIIVAKOODEILLE
+# =====================
+
+class Viivakoodi:
+    pass
+    if __name__ == "__main__":
+        testString = '128B'
+        print ('Painotetut arvot yhteensä:', calculatedCode128BChecksum(testString))
+        print('Koko viivakoodi on', createCode128B('128B'))
 

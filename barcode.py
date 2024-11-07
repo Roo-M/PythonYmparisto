@@ -162,7 +162,7 @@ class Code128B():
 
                 # Normaalit merkit 32 - 126, alle 32 ei tarvitse enää huomioida
                 if characterValue < 127:
-                    value = characterValue -32
+                    value = characterValue -32 # Tätä arvoa käytetään varmistussumman laskennassa
 
                 # Erikoismerkit, joiden arvo on 0    
                 elif characterValue in (194, 207, 212, 252):
@@ -173,11 +173,11 @@ class Code128B():
                     value = characterValue - subtractValues[variant]
                         
                 
-                # Kirjaimen painotetun arvon lisääminen, huom indeksi alkaa 0:sta kertoimet 1:stä       
+                # Kirjaimen painotetun arvon lisääminen, huom indeksi alkaa 0:sta ja kertoimet 1:stä       
                 weightedSum =  weightedSum + (index +1)  * value
             
-            # Alkumerkin sisältäva painotettu summa
-            weightedSum = weightedSum + startValues[variant]
+            # Alkumerkin sisältävä painotettu summa
+            weightedSum = weightedSum + startValues[variant] - subtractValues[variant]
 
             # Lopullinen varmistussumma jakojäännös 103:lla jaettaessa
             checksum = weightedSum % 103

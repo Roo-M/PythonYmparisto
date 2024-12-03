@@ -20,71 +20,61 @@ from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
     QWidget)
 
 class Ui_MainWindow(object):
-
-    # Luodaan pääikkuna
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(800, 600)
-
-        # Määritellään päävimpain, jonka sisälle muut vimpaimet sijoitetaan
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        
-        # Määritellään käyttöliittymäelementit päävimpaimen sisälle
         self.lineEdit = QLineEdit(self.centralwidget)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setGeometry(QRect(20, 20, 113, 20))
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(20, 70, 47, 13))
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(170, 20, 75, 23))
-        self.pushButton_2 = QPushButton(self.centralwidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(270, 20, 75, 23))
-        
-        # Tehdään oletusfontista poikkeava fonttiasetus
+        self.vaaraPushButton = QPushButton(self.centralwidget)
+        self.vaaraPushButton.setObjectName(u"vaaraPushButton")
+        self.vaaraPushButton.setGeometry(QRect(170, 20, 75, 23))
         font = QFont()
-        font.setFamilies([u"MV Boli"])
         font.setPointSize(10)
-        font.setBold(False)
-
-        # Käyetetään fonttiasetusta painikkeessa
-        self.pushButton_2.setFont(font)
-
-        # Määritellään painikkeen tyyliasetukset
-        self.pushButton_2.setStyleSheet(u"background-color: rgb(255, 189, 84);")
-        
-        # Asetetaan pääikkunan päävimpain
+        font.setBold(True)
+        self.vaaraPushButton.setFont(font)
+        self.vaaraPushButton.setStyleSheet(u"background-color: rgb(255, 0, 0);\n"
+"color: rgb(255, 255, 255);")
+        self.tulostaPushButton = QPushButton(self.centralwidget)
+        self.tulostaPushButton.setObjectName(u"tulostaPushButton")
+        self.tulostaPushButton.setGeometry(QRect(270, 20, 75, 23))
+        font1 = QFont()
+        font1.setFamilies([u"MV Boli"])
+        font1.setPointSize(10)
+        font1.setBold(False)
+        self.tulostaPushButton.setFont(font1)
+        self.tulostaPushButton.setStyleSheet(u"background-color: rgb(255, 189, 84);")
+        self.tulostettuLabel = QLabel(self.centralwidget)
+        self.tulostettuLabel.setObjectName(u"tulostettuLabel")
+        self.tulostettuLabel.setGeometry(QRect(266, 70, 91, 31))
+        self.tulostettuLabel.setFont(font)
+        self.tulostettuLabel.setStyleSheet(u"color: rgb(255, 0, 0);")
         MainWindow.setCentralWidget(self.centralwidget)
-        
-        # Määritellään valikko- ja tilarivit
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-
-        # Luodaan tyhjä valikkorivi
         self.menubar.setGeometry(QRect(0, 0, 800, 21))
         MainWindow.setMenuBar(self.menubar)
-
-        # Luodaan tilarivi
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        # Kutsutaan metodia, joka muodostaa 8 bittiset elementtien nimet
         self.retranslateUi(MainWindow)
-
-        # Määritellään signaali, joka annetaan kun tekstikenttää "lineEdit" muokataan
         self.lineEdit.textChanged.connect(self.label.setText)
 
         QMetaObject.connectSlotsByName(MainWindow)
+    # setupUi
 
-    # Metodi elementtien nimien muuttamiseksi Unicode -> UTF-8
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Tulosta", None))
+        self.vaaraPushButton.setText(QCoreApplication.translate("MainWindow", u"Vaara", None))
+        self.tulostaPushButton.setText(QCoreApplication.translate("MainWindow", u"Tulosta", None))
+        self.tulostettuLabel.setText(QCoreApplication.translate("MainWindow", u"Ei tulostettu", None))
+    # retranslateUi
 

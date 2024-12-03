@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>799</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="toolTip">
+   <string/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="ssnLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>Suomalainen henkilötunnus</string>
+    </property>
+    <property name="locale">
+     <locale language="Finnish" country="Finland"/>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>ddmmyy-nnnx</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ssnLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Henkilötunnus</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="firstNameLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="locale">
+     <locale language="Finnish" country="Finland"/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lastNameLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="locale">
+     <locale language="Finnish" country="Finland"/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="firstNameLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Etunimi</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lastNameLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>210</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sukunimi</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="barcodeLabel">
+    <property name="geometry">
+     <rect>
+      <x>26</x>
+      <y>322</y>
+      <width>181</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Libre Barcode 128 Text</family>
+      <pointsize>36</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>ppkkvv-nnnv</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="printPushButton">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>440</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Tulosta</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="amountSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>330</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>350</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Näytteenotto-ohjeet</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>370</y>
+      <width>161</width>
+      <height>171</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>799</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuTiedosto">
+    <property name="title">
+     <string>Tiedosto</string>
+    </property>
+    <widget class="QMenu" name="menuTulosta">
+     <property name="title">
+      <string>Tulosta</string>
+     </property>
+     <addaction name="actionViivakoodi"/>
+     <addaction name="actionNimilappu"/>
+    </widget>
+    <addaction name="actionTallenna"/>
+    <addaction name="menuTulosta"/>
+    <addaction name="separator"/>
+    <addaction name="actionLopeta"/>
+   </widget>
+   <widget class="QMenu" name="menuMuokkaa">
+    <property name="title">
+     <string>Muokkaa</string>
+    </property>
+    <widget class="QMenu" name="menuLiit_m_r_ten">
+     <property name="title">
+      <string>Liitä määräten</string>
+     </property>
+     <addaction name="actionArvot"/>
+     <addaction name="actionKaavat"/>
+     <addaction name="actionMuotoilut"/>
+    </widget>
+    <addaction name="actionKopioi"/>
+    <addaction name="actionLiit"/>
+    <addaction name="actionLeikkaa"/>
+    <addaction name="menuLiit_m_r_ten"/>
+   </widget>
+   <addaction name="menuTiedosto"/>
+   <addaction name="menuMuokkaa"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionTallenna">
+   <property name="text">
+    <string>Tallenna...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionLopeta">
+   <property name="text">
+    <string>Lopeta</string>
+   </property>
+  </action>
+  <action name="actionViivakoodi">
+   <property name="text">
+    <string>Viivakoodi</string>
+   </property>
+  </action>
+  <action name="actionNimilappu">
+   <property name="text">
+    <string>Nimilappu</string>
+   </property>
+  </action>
+  <action name="actionTulosta_2">
+   <property name="text">
+    <string>Tulosta</string>
+   </property>
+   <property name="toolTip">
+    <string>Tulostaa viivakoodin</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+B</string>
+   </property>
+  </action>
+  <action name="actionKopioi">
+   <property name="text">
+    <string>Kopioi</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionLiit">
+   <property name="text">
+    <string>Liitä</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionLeikkaa">
+   <property name="text">
+    <string>Leikkaa</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionArvot">
+   <property name="text">
+    <string>Arvot</string>
+   </property>
+  </action>
+  <action name="actionKaavat">
+   <property name="text">
+    <string>Kaavat</string>
+   </property>
+  </action>
+  <action name="actionMuotoilut">
+   <property name="text">
+    <string>Muotoilut</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>ssnLineEdit</tabstop>
+  <tabstop>firstNameLineEdit</tabstop>
+  <tabstop>lastNameLineEdit</tabstop>
+  <tabstop>amountSpinBox</tabstop>
+  <tabstop>printPushButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>ssnLineEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>barcodeLabel</receiver>
+   <slot>setText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>149</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>115</x>
+     <y>371</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

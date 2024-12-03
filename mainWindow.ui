@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
+      <y>70</y>
       <width>47</width>
       <height>13</height>
      </rect>
@@ -37,17 +37,75 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="vaaraPushButton">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>170</x>
       <y>20</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 0, 0);
+color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Vaara</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="tulostaPushButton">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>20</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MV Boli</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 189, 84);</string>
+    </property>
+    <property name="text">
+     <string>Tulosta</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tulostettuLabel">
+    <property name="geometry">
+     <rect>
+      <x>266</x>
+      <y>70</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Ei tulostettu</string>
     </property>
    </widget>
   </widget>
@@ -64,5 +122,22 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>lineEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>label</receiver>
+   <slot>setText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>51</x>
+     <y>53</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>48</x>
+     <y>95</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

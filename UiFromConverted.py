@@ -27,8 +27,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # OHJELMOIDUT SIGNAALIT
         # ---------------------
 
-        # Kun Tulosta painiketta klikattu, kutsutaan updatePrintedLabel-metodia
+        # Kun Tulosta-painiketta klikattu, kutsutaan updatePrintedLabel-metodia
         self.ui.tulostaPushButton.clicked.connect(self.updatePrintedLabel)
+
+        # Kun Vaara-painiketta on klikattu, kutsutaan openWarning-metodia
         self.ui.vaaraPushButton.clicked.connect(self.openWarning)
 
     # OHJELMOIDUT SLOTIT

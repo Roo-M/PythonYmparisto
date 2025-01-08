@@ -19,7 +19,7 @@ kameraIndeksi: int = 1 # Ensimmäinen kamera on aina 0
 # --------
 
 def askName(question: str) -> str:
-    """Reads console untila a name is given and converts it to title and removes white space
+    """Prompts user to answer a question and converts the answer to title and removes white space
 
     Args:
         question (str): Prompt to user
@@ -37,6 +37,7 @@ def askName(question: str) -> str:
 
 # Varmistetaan, ettei ohjelma käynnisty, kun se tuodaan moduuliin importilla
 # Ohjelma saa käynnistyä ainoastaan ajamalla app.py
+
 if __name__ == "__main__":
 
     # PÄÄOHJELMAN IKUINEN SILMUKKA
@@ -77,15 +78,12 @@ if __name__ == "__main__":
             # Virhetilanteessa näytetään virheilmoitus
             except Exception as e:
                 print('Syöttämässäsi sosiaaliturvatunnuksessa oli virhe:', e)
-        else:
-            print('Antamasi sosiaaliturvatunnus on virheellinen.')
 
-        # TODO: Lisää else-haara, joka kertoo että HeTu oli virheellinen
+        else:
+            print('Henkilötunnuksessa virhe, syötä tunnus uudelleen')
 
         # Kysytään halutaanko poistua ohjelmasta
         wantToExit = input('Haluatko päättää ohjelman? Vastaa k/E: ')
         # Muutetaan vastaus isoiksi kirjaimiksi ja tarkistetaan onko se K
-        if wantToExit.upper == 'K':
+        if wantToExit.upper() == 'K':
             break # Poistutaan ikuisesta silmukasta
-
-

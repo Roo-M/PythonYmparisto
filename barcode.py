@@ -23,7 +23,7 @@ def barCodeValue(character: str) ->int:
     code128BValue = asciiValue - 32
     return code128BValue
 
-def calculatedCode128BChecksum(text: str) ->int:
+def calculateCode128BChecksum(text: str) ->int:
     """Calculates a checksum for a given string
 
     Args:
@@ -68,7 +68,7 @@ def createCode128B(text: str) ->str:
     code128BBarCodeString = ''
     startChar = chr(204)
     stopChar = chr(206)
-    checkSum = calculatedCode128BChecksum(text)
+    checkSum = calculateCode128BChecksum(text)
     checkSumSymbol = chr(checkSum + 32)
     code128BBarCodeString = startChar + text + checkSumSymbol + stopChar
     return code128BBarCodeString

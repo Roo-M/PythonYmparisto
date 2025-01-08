@@ -39,7 +39,7 @@ def test_centuryWrong():
 
 # Testitapaus 5: Iän laskenta, huom korjattava vuosittain testin tulos
 def test_age():
-    assert testSsnOK.calculateAge() == 96
+    assert testSsnOK.calculateAge() == 97
 
 # Testitapaus 6: Sukupuolen selvittäminen
 def test_gender():
@@ -85,3 +85,5 @@ def test_splitSsn():
 def test_getDateOfBirth():
     testSsnOK.getDateOfBirth()
     assert testSsnOK.dateOfBirth == '1928-07-13'
+
+# TODO: Tee testit virheilmoituksille

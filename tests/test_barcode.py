@@ -12,7 +12,7 @@ import pytest # Tarvitaan virheiden generointiin
 
 # Testitapaus 1 Viivakoodin "128B" varmistussumma 
 def test_128BCheckSum():
-    assert barcode.calculateCode128BCheksum('128B') == 56
+    assert barcode.calculateCode128BChecksum('128B') == 56
 
 # Testitapaus 2 Viivakoodin "128B" sisältö
 def test_128BString():

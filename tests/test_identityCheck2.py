@@ -37,7 +37,7 @@ def test_birthdayWrong():
 def test_centuryWrong():
     assert testSsnWrongCentury.isValidSsn() == True
 
-# Testitapaus 5: Iän laskenta, huom korjattava vuosittain testin tulos
+# Testitapaus 5: Iän laskenta, HUOM! korjattava vuosittain testin tulos
 def test_age():
     assert testSsnOK.calculateAge() == 97
 
@@ -67,9 +67,6 @@ def test_wrongCenturySymbolError():
         testSsnWrongCenturySymbol.getDateOfBirth()
     assert str(exceptionMessage.value) == 'Vuosisatamerkki virheellinen'
 
-# Muita testitapauksia
-# --------------------
-
 # Testitapaus 10: Henkilötunnuksen pilkkominen, oikea pituus
 def test_splitSsn():
     parts = testSsnOK.splitSsn()
@@ -86,4 +83,15 @@ def test_getDateOfBirth():
     testSsnOK.getDateOfBirth()
     assert testSsnOK.dateOfBirth == '1928-07-13'
 
-# TODO: Tee testit virheilmoituksille
+# Testataan, että isValid-metodi antaa oikeat virheilmoitukset
+def test_ssnShortError(): # Liian lyhyt hetu
+    testSsnShort.isValidSsn()
+    assert testSsnShort.errorMessage == 'Henkilötunnuksesta puuttuu merkkejä'
+
+def test_ssnLongError(): # Liian pitkä hetu
+    testSsnLong.isValidSsn()
+    assert testSsnLong.errorMessage == 'Henkilötunnuksessa ylimääräisiä merkkejä'
+
+def test_ssnInvalidError(): # Muu virhe
+    testSsnWrongCheckSum.isValidSsn()
+    assert testSsnWrongCheckSum.errorMessage == 'Syötetty henkilötunnus ei vastaa varmistussummaa'

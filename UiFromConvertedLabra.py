@@ -39,9 +39,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.firstNameLineEdit.editingFinished.connect(lambda: self.beautifyElement(self.ui.firstNameLineEdit))
         self.ui.lastNameLineEdit.editingFinished.connect(lambda: self.beautifyElement(self.ui.lastNameLineEdit))
 
-        
         # Aktivoidaan tulostuspainike sen jälkeen kun etikettien määrä on valittu
         self.ui.amountSpinBox.valueChanged.connect(self.enablePrintButton)
+        
 
         """ Signaali (connect) lähettää elementistä riippuen eri määrän dataa.
         Jos oma slot-metodi käyttää argumentteja, sen saama argumenttien määrä
@@ -67,6 +67,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Viivakoodin muodostus ja barcodeLabel:n päivitys
     def updateBarcodeLabel(self):
+        """Updates the barcode label and sets ssnLineEdit to upper case
+        """
         # Tarkistetaan, että henkilötunnus on muodostettu oikein
         uiSsn = self.ui.ssnLineEdit.text().upper() # Luetaan käyttöliittymästä henkilötunnus
         ssnToCheck = identityCheck2.NationalSSN(uiSsn) # Luodaan henkilötunnusobjekti
@@ -94,6 +96,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Yleispätevä elementin siistimismetodi, varsinainen metodi, jota interMediateSlot tai lambda kutsuu
     def beautifyElement(self, element):
+        """Beautifies contents of an element
+
+        Args:
+            element (QtWidget): The element to be beautified
+        """
         elementText = element.text() # Luetaan elementin teksti
         elementText = elementText.strip() # Poistetaan ylimääräiset välit tms
         elementText = elementText.title() # Muutetaan isot alkukirjaimet
@@ -101,17 +108,37 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Aktivoidaan tulostuspainike
     def enablePrintButton(self):
-        if self.ui.ssnLineEdit.text != '' or self.ui.firstNameLineEdit.text != '' or self.ui.lastNameLineEdit.text != '':
+        """Enables the print button if all inputs are occupied with values
+        """
+        if self.ui.ssnLineEdit.text() != '' and self.ui.firstNameLineEdit.text() != '' and self.ui.lastNameLineEdit.text() != '':
             self.ui.printPushButton.setEnabled(True)
-        
+        else:
+            self.ui.printPushButton.setEnabled(False)
+
     # Virheilmoitusikkuna
     def openErrorMsgBox(self, errorTitle, errorText):
+        """Opens a message box alerting about an error
+
+        Args:
+            errorTitle (str): Title of the message box
+            errorText (str): What kind of an error has occurred
+        """
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Critical)
         msgBox.setWindowTitle(errorTitle)
         msgBox.setText(errorText)
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         msgBox.exec()
+
+    # Tilarivinpäivitysrutiini
+    def updateStatusbar(self, textToShow, timeToShow = -1):
+        """Updates the statusbar
+
+        Args:
+            textToShow (str): A text to show on statusbar
+            timeToShow (int, optional): duration of message in ms. Defaults to -1.
+        """
+        self.ui.statusbar.showMessage(textToShow, timeToShow)
 
     """ # Esimerkki toisella tapaa
     # Siistitään etunimi muuttamala alkukirjaimet isoiksi ja poistamalla ylim. välit
@@ -134,10 +161,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         element = self.ui.lastNameLineEdit
         self.beautifyElement(element) """
 
-        # TODO: Tulostuspainike aktiiviseksi vain, kun kaikki tiedot syötetty ja OK -> disabled oletus, kun kaikki tiedot enable
-
-    def updateStatusbar(self, textToShow, timeToShow = -1):
-        self.ui.statusbar.showMessage(textToShow, timeToShow)
 
 if __name__ == "__main__":
 

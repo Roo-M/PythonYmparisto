@@ -33,6 +33,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # ---------------------
 
         # Kun poistutaan ssnLineEdit-elementistä suoritetaan barcodeLabel-elementin päivitys
+        # Huom! Kun poistutaan Enter-näppäimellä virheilmoitus aukeaa kahdesti
+        # TODO: Etsi tähän korjaus
         self.ui.ssnLineEdit.editingFinished.connect(self.updateBarcodeLabel)
 
         # Siistitään etunimi- ja sukunimielementit poistuttaessa:
@@ -63,8 +65,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # OHJELMOIDUT SLOTIT
     # ------------------
 
-    # TODO: Tee DocStringit metodeille
-
     # Viivakoodin muodostus ja barcodeLabel:n päivitys
     def updateBarcodeLabel(self):
         """Updates the barcode label and sets ssnLineEdit to upper case
@@ -83,7 +83,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             gender = ssnToCheck.getGender() # Kutsutaan sukupuolen selvitys metodia
             gender = ssnToCheck.gender.lower() # Luetaan ikä-ominaisuuden arvo oliosta
             textToShow = f'Asiakas on {age} vuotias {gender}.'
-            timeToShow = 10000
+            timeToShow = 10000 # Voi jättää pois, jos käyttää oletusta
             self.updateStatusbar(textToShow)
         
         # Jos se on muodostettu väärin, näytetään virheilmoitus MessageBox-ikkunassa
